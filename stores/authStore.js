@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
-export const useAuthStore = defineStore("useAuthStore",{
+export const useAuthStore = defineStore("authStore", {
   state: () => ({
     accessToken: "",
-    scope: []
   }),
 
   actions: {
@@ -10,13 +9,15 @@ export const useAuthStore = defineStore("useAuthStore",{
       const { getSession } = useAuth();
       const session = await getSession();
       this.accessToken = session?.user?.accessToken;
-      this.scope = session?.user?.scope;
     },
+    testFetch() {
+      return reqFetch("/organisations");
+    }
   },
 
   getters: {
-    getAccessToken() {
+    getToken() {
       return this.accessToken;
-    }
-  }
+    },
+  },
 });
