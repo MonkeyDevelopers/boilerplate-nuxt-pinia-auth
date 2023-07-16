@@ -8,11 +8,14 @@ export const useAuthStore = defineStore("authStore", {
   actions: {
     async setToken(token) {
       if (!token) {
+        console.log("Setting token")
         const { getSession } = useAuth();
         const session = await getSession();
         this.accessToken = session?.user?.accessToken;
+        console.log(this.accessToken);
         return;
       }
+      console.log("Setting token", token)
       this.accessToken = token;
     },
     authHeader(){

@@ -9,7 +9,7 @@
     data : {{ data?.user }}
   </h2>
   <h2>
-    test: {{ auth.getAccessToken }}
+    test: {{ token }}
   </h2>
 
   <button @click="this.$router.push({ path: '/' });">Ir pro index</button>
@@ -23,9 +23,11 @@ const auth = useAuthStore();
 
 const { data, signOut, status } = useAuth();
 
-onMounted(() => {
-  // Ação personalizada a ser executada após a montagem da aplicação
-  auth.setToken();
-});
+const token = computed(() => auth.accessToken);
+
+// onMounted(() => {
+//   // Ação personalizada a ser executada após a montagem da aplicação
+//   auth.setToken();
+// });
 
 </script>
