@@ -5,9 +5,8 @@
   <h1 v-if="status == 'unauthenticated'">Voce nao esta logado</h1>
 </template>
 <script setup>
-// definePageMeta({
-//   layout: "intern",
-// });
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 definePageMeta({
   auth: {
     unauthenticatedOnly: true,
@@ -28,11 +27,16 @@ const mySignInHandler = async () => {
     callbackUrl: "/dashboard",
   });
   if (error) {
-    alert("You have made a terrible mistake while entering your credentials");
+    toast('Erro ao fazer login..!!', { position: 'bottom-center', transition: 'flip', type: 'error' });
   } else {
-    // No error, continue with the sign in, e.g., by following the returned redirect:
-    return navigateTo(url, { external: true });
+    toast('Login efetuado com sucesso!!', { position: 'bottom-center', transition: 'flip', type: 'success' });
+
+    setTimeout(() => {
+      navigateTo(url, { external: true });
+    }, 1000);
   }
+  
+
 };
 
 </script>

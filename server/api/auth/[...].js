@@ -1,5 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NuxtAuthHandler } from "#auth";
+import { useAuthStore } from "../../../stores/authStore"
 
 async function refreshAccessToken(refreshToken) {
   try {
@@ -77,7 +78,12 @@ export default NuxtAuthHandler({
           }
 
           const user = { ...userDetails, accessToken: userTokens.access_token };
-
+          const store = useAuthStore();
+          
+          store.setToken(userTokens.access_token);
+          
+          
+          // useAuthStore().setAccessToken(userTokens.access_token);
           return user;
         } catch (error) {
           console.warn("Error logging in", error);

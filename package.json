@@ -10,12 +10,13 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@sidebase/nuxt-auth": "0.6.0-beta.3",
     "@types/node": "^18.16.19",
-    "nuxt": "^3.6.2",
-    "@sidebase/nuxt-auth": "0.6.0-beta.3"
+    "nuxt": "^3.6.2"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
-    "next-auth": "4.21.1"
+    "next-auth": "4.21.1",
+    "vue3-toastify": "^0.1.11"
   }
 }
