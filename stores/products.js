@@ -9,9 +9,9 @@ export const useProductStore = defineStore("useProductStore",{
   actions: {
     async getResults() {
       // const products = await $fetch(`${PROCESS.ENV.BACK_URL}/api/products`, {headers: {}});
-      const products = ["product1", "product2", "product3"];
-      this.products = products;
-      this.product = products[0];
+      const users = await reqFetch("/api/v1/users");
+      this.products = users;
+      this.product = users[0];
     },
   },
 });

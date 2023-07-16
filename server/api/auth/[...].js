@@ -2,6 +2,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { NuxtAuthHandler } from "#auth";
 import { useAuthStore } from "@/stores/authStore";
 
+const urls = {
+  login: "/api/login",
+  user: "/api/user",
+}
 
 async function refreshAccessToken(refreshToken) {
   try {
@@ -71,9 +75,7 @@ export default NuxtAuthHandler({
           };
 
           // save Token to store
-          const authStore = useAuthStore();
-          // authStore.setToken();
-          authStore.setToken(userTokens.access_token);
+          useAuthStore().setToken(userTokens.access_token);
 
           return user;
         } catch (error) {
@@ -83,14 +85,14 @@ export default NuxtAuthHandler({
         }
 
         async function getUserTokens(payload) {
-          return $fetch(`${process.env.BACK_URL}/api/login`, {
+          return $fetch(`${process.env.BACK_URL}${urls.login}`, {
             method: "POST",
             body: payload,
           });
         }
 
         async function getUserDetails(token) {
-          return $fetch(`${process.env.BACK_URL}/api/user`, {
+          return $fetch(`${process.env.BACK_URL}${urls.user}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

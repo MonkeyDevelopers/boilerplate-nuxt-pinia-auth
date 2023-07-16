@@ -25,9 +25,9 @@ const { data, signOut, status } = useAuth();
 
 const token = computed(() => auth.accessToken);
 
-// onMounted(() => {
-//   // Ação personalizada a ser executada após a montagem da aplicação
-//   auth.setToken();
-// });
+onMounted(() => {
+  // Ação personalizada a ser executada após a montagem da aplicação
+  auth.setToken();
+});
 
 </script>
