@@ -18,14 +18,14 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '~/stores/mainInfo';
+import { useAuthStore } from '~/stores/authStore';
 const auth = useAuthStore();
 
 const { data, signOut, status } = useAuth();
 
 onMounted(() => {
   // Ação personalizada a ser executada após a montagem da aplicação
-  auth.setAccessToken();
+  auth.setToken();
 });
 
 </script>

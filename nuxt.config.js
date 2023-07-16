@@ -7,6 +7,11 @@ export default defineNuxtConfig({
   pinia: {
     autoImports: ["defineStore", "acceptHMRUpdate"],
   },
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BACK_URL || 'http://localhost:3001',
+    },
+  },
   auth: {
     // The module is enabled. Change this to disable the module
     isEnabled: true,
