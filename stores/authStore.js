@@ -9,7 +9,7 @@ export const useAuthStore = defineStore("authStore", {
     async setToken(token) {
       if (!token) {
         console.log("Setting token")
-        const { getSession } = useAuth();
+        const { getSession, getToken } = useAuth();
         const session = await getSession();
         this.accessToken = session?.user?.accessToken;
         console.log(this.accessToken);
@@ -18,14 +18,15 @@ export const useAuthStore = defineStore("authStore", {
       console.log("Setting token", token)
       this.accessToken = token;
     },
-    authHeader(){
+    async authHeader(){
+      const { getToken } = useAuth();
       return {
-        Authorization: `Bearer ${this.accessToken}`,
+        Authorization: `Bearer ${getToken}`,
         "Content-Type": "application/json",
       };
     },
-    test() {
-      return reqFetch("/organisations");
+    async test() {
+      return reqFetch("/api/v1/users");
     },
   },
 

@@ -3,6 +3,7 @@
   <h1 v-else>Voce nao esta logado</h1>
   <h1>{{ store.products }}</h1>
   <h1>{{ authStore.getToken }}</h1>
+  <button @click="authStore.test">Test</button>
   <button @click="this.$router.push({ path: '/login' })">Entrar no Sistema</button>
   <button @click="signOut">Sair do codego</button>
 </template>
